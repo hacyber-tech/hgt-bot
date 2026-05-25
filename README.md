@@ -1,4 +1,5 @@
-## HACYBERGLOBALTECH
+# HACYBERGLOBALTECH
+
 Official automation gateway for HGT-BOT - Activation Portal
 HGT Bot is a secure, automated lead generation and verification system. This portal allows users to initiate service activation requests, which are processed in real-time by a backend Telegram bot engine.
 # 🚀 Features
