@@ -1,20 +1,30 @@
 const { Telegraf, Markup } = require('telegraf');
 require('dotenv').config();
 
+// Initialize Bot
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
 const ADMIN_ID = process.env.ADMIN_ID; 
 
+// Session Storage for manual verification
 const userSession = new Map();
+
+// Menu for users
 const mainMenuMarkup = Markup.keyboard([
     ['🟩 View Payment Options', '📝 Submit Verification'],
     ['⏳ Check Link Status', '📞 Contact Support']
 ]).resize();
 
+// Startup command
+bot.start((ctx) => {
+    ctx.reply('Welcome to HGT Nexus! Select an option below:', mainMenuMarkup);
+});
+
+// Main Message Processor
 bot.on('message', async (ctx) => {
     const text = ctx.message.text || '';
     const userId = ctx.from.id;
 
-    // 1. Capture Web Portal Lead
+    // 1. Capture Web Portal Lead (from your index.html)
     if (text.startsWith('🔐 Bot‑Grabber Activation Request')) {
         if (ADMIN_ID) {
             await bot.telegram.sendMessage(ADMIN_ID, `🚨 *NEW WEB-PORTAL LEAD*\n\n${text}`, { parse_mode: 'Markdown' });
@@ -24,7 +34,7 @@ bot.on('message', async (ctx) => {
 
     // 2. Manual Verification Workflow
     const session = userSession.get(userId);
-    if (text === '📝 Submit Verification' || text === '/verify') {
+    if (text === '📝 Submit Verification') {
         userSession.set(userId, { stage: 'AWAITING_DETAILS' });
         return ctx.reply('📝 Please reply with your Payment Details (Name/Reference):');
     }
@@ -47,4 +57,9 @@ bot.on('message', async (ctx) => {
     }
 });
 
+// Launch Bot
 bot.launch().then(() => console.log('🚀 HGT-BoT Engine: Fully Operational.'));
+
+// Enable graceful stop
+process.once('SIGINT', () => bot.stop('SIGINT'));
+process.once('SIGTERM', () => bot.stop('SIGTERM'));
