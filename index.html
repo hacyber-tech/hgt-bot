@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HGT Nexus - Activation Portal</title>
+    </head>
+<body style="background-color: #020617; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
+
+    <div class="container" style="width: 90%; max-width: 400px; padding: 20px; border: 1px solid #38bdf8; border-radius: 15px; background: #0f172a;">
+        
+        <div class="header-logo" style="text-align: center; margin-bottom: 25px;">
+            <img src="IMG_6870.png" alt="HGT Logo" style="width: 150px; height: auto; filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5)); border-radius: 50%;">
+            <h2 style="color: #38bdf8; margin-top: 15px; font-weight: 700; letter-spacing: 1px;">HGT NEXUS</h2>
+        </div>
+
+        <input type="text" id="fullName" placeholder="Full Name" style="width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; background: #1e293b; color: white; border: 1px solid #38bdf8;">
+        <input type="email" id="email" placeholder="Email" style="width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; background: #1e293b; color: white; border: 1px solid #38bdf8;">
+        <input type="tel" id="phone" placeholder="Phone" style="width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; background: #1e293b; color: white; border: 1px solid #38bdf8;">
+        <input type="text" id="country" placeholder="Country" style="width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; background: #1e293b; color: white; border: 1px solid #38bdf8;">
+        <select id="platform" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1e293b; color: white; border: 1px solid #38bdf8;">
+            <option>Select Platform</option>
+            <option>Desktop</option>
+            <option>Mobile</option>
+        </select>
+        <select id="plan" style="width: 100%; padding: 10px; margin-bottom: 20px; background: #1e293b; color: white; border: 1px solid #38bdf8;">
+            <option>Select Plan</option>
+            <option>Basic</option>
+            <option>Premium</option>
+        </select>
+
+        <button onclick="sendTo('telegram')" style="width: 100%; padding: 15px; background: #38bdf8; color: #020617; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+            Activate Now
+        </button>
+
+    </div>
+
+    <script>
+        function sendTo(channel) {
+            const name = document.getElementById("fullName").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const country = document.getElementById("country").value;
+            const platform = document.getElementById("platform").value;
+            const plan = document.getElementById("plan").value;
+
+            const message = encodeURIComponent(
+                `🔐 Bot‑Grabber Activation Request\n\n` +
+                `👤 Name: ${name}\n` +
+                `📧 Email: ${email}\n` +
+                `📱 Phone: ${phone}\n` +
+                `🌍 Country: ${country}\n` +
+                `💠 Platform: ${platform}\n` +
+                `📦 Plan: ${plan}`
+            );
+
+            if (channel === "telegram") {
+                window.location.href = `https://t.me/multi_grabber_system_bot?text=${message}`;
+            } else {
+                window.location.href = `https://wa.me/13609552434?text=${message}`;
+            }
+        }
+    </script>
+</body>
+</html>
