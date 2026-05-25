@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "Activation portal for Bot-Grabber",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "start": "node index.js"
   },
   "dependencies": {
     "telegraf": "^4.16.3"
