@@ -1,2 +1,18 @@
-node_modules/
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables (NEVER upload these!)
 .env
+
+# Dependencies
+node_modules/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build/Dist files
+dist/
+build/
